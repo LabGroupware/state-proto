@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package user.v1;
+
+service UserService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+}
+
+message GetUserRequest {
+  string user_id = 1; // ユーザーID
+}
+
+message GetUserResponse {
+  string user_id = 1; // ユーザーID
+  string name = 2; // フルネーム
+  string email = 3; // メールアドレス
+  optional string given_name = 4; // 名 (first name)
+  optional string family_name = 5; // 姓 (last name)
+  optional string middle_name = 6; // ミドルネーム
+  optional string nickname = 7; // ニックネーム
+  optional string profile = 8; // プロフィールページのURL
+  optional string picture = 9; // プロフィール画像のURL
+  optional string website = 10; // ウェブサイトURL
+  optional string phone = 11; // 電話番号
+  optional string gender = 12; // 性別 (例：male、female、otherなど)
+  optional string birthdate = 13; // 生年月日 (YYYY-MM-DD形式)
+  optional string zoneinfo = 14; // タイムゾーン (例：Europe/Paris)
+  optional string locale = 15; // 言語/地域設定 (例：en-US)
+}

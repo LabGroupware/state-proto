@@ -1,0 +1,12 @@
+version: v2
+modules:
+  - path: proto
+    name: buf.build/labgroupware/state
+lint:
+  use:
+    - STANDARD
+  ignore:
+    - proto/google/type/datetime.proto
+breaking:
+  use:
+    - FILE
