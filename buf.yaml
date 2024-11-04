@@ -5,8 +5,8 @@ modules:
 lint:
   use:
     - STANDARD
-  ignore:
-    - proto/google/type/datetime.proto
 breaking:
   use:
     - FILE
+deps:
+  - buf.build/labgroupware/common

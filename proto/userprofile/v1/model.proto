@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package userprofile.v1;
+
+import "cresplanex/nova/v1/nullable.proto";
+
+message UserProfile {
+  string user_profile_id = 1; // ユーザープロフィールID
+    string user_id = 2; // ユーザーID
+    string name = 3; // フルネーム
+    string email = 4; // メールアドレス
+    cresplanex.nova.v1.NullableString given_name = 5; // 名 (first name)
+    cresplanex.nova.v1.NullableString family_name = 6; // 姓 (last name)
+    cresplanex.nova.v1.NullableString middle_name = 7; // ミドルネーム
+    cresplanex.nova.v1.NullableString nickname = 8; // ニックネーム
+    cresplanex.nova.v1.NullableString profile = 9; // プロフィールページのURL
+    cresplanex.nova.v1.NullableString picture = 10; // プロフィール画像のURL
+    cresplanex.nova.v1.NullableString website = 11; // ウェブサイトURL
+    cresplanex.nova.v1.NullableString phone = 12; // 電話番号
+    cresplanex.nova.v1.NullableString gender = 13; // 性別 (例：male、female、otherなど)
+    cresplanex.nova.v1.NullableString birthdate = 14; // 生年月日 (YYYY-MM-DD形式)
+    cresplanex.nova.v1.NullableString zoneinfo = 15; // タイムゾーン (例：Europe/Paris)
+    cresplanex.nova.v1.NullableString locale = 16; // 言語/地域設定 (例：en-US)
+  }

@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package userprofile.v1;
+
+import "userprofile/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+
+service UserProfileService {
+  rpc FindUserProfile(FindUserProfileRequest) returns (FindUserProfileResponse);
+  rpc FindUserProfileByUserId(FindUserProfileByUserIdRequest) returns (FindUserProfileByUserIdResponse);
+  rpc FindUserProfileByEmail(FindUserProfileByEmailRequest) returns (FindUserProfileByEmailResponse);
+  rpc GetUserProfiles(GetUserProfilesRequest) returns (GetUserProfilesResponse);
+}
+
+message FindUserProfileRequest {
+  string user_profile_id = 1; // ユーザープロフィールID
+}
+
+message FindUserProfileResponse {
+  UserProfile user_profile = 1;
+}
+
+message FindUserProfileByUserIdRequest {
+  string user_id = 1; // ユーザーID
+}
+
+message FindUserProfileByUserIdResponse {
+  UserProfile user_profile = 1;
+}
+
+message FindUserProfileByEmailRequest {
+  string email = 1; // メールアドレス
+}
+
+message FindUserProfileByEmailResponse {
+  UserProfile user_profile = 1;
+}
+
+message GetUserProfilesRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetUserProfilesResponse {
+  repeated UserProfile user_profiles = 1;
+  cresplanex.nova.v1.Count count = 2;
+}

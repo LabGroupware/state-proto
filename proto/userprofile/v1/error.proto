@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package userprofile.v1;
+
+import "userprofile/v1/type.proto";
+
+enum UserProfileServiceErrorCode {
+  USER_PROFILE_SERVICE_ERROR_CODE_UNSPECIFIED = 0;
+  USER_PROFILE_SERVICE_ERROR_CODE_INTERNAL = 1;
+  USER_PROFILE_SERVICE_ERROR_CODE_USER_PROFILE_NOT_FOUND = 2;
+  USER_PROFILE_SERVICE_ERROR_CODE_USER_PROFILE_DUPLICATE = 3;
+}
+
+message UserProfileServiceErrorMeta {
+  UserProfileServiceErrorCode code = 1;
+  string message = 2;
+}
+
+message UserProfileServiceInternalError {
+  UserProfileServiceErrorMeta meta = 1;
+}
+
+message UserProfileServiceUserProfileNotFoundError {
+  UserProfileServiceErrorMeta meta = 1;
+  UserProfileUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string user_profile_id = 3;
+    string user_id = 4;
+    string email = 5;
+  }
+}
+
+message UserProfileServiceUserProfileDuplicateError {
+  UserProfileServiceErrorMeta meta = 1;
+  UserProfileUniqueFieldType unique_field_type = 2;
+  oneof unique_field_value {
+    string user_profile_id = 3;
+    string user_id = 4;
+    string email = 5;
+  }
+}
+
+message UserProfileServiceError {
+  oneof error {
+    UserProfileServiceInternalError internal_error = 1;
+    UserProfileServiceUserProfileNotFoundError user_profile_not_found_error = 2;
+    UserProfileServiceUserProfileDuplicateError user_profile_duplicate_error = 3;
+  }
+}
