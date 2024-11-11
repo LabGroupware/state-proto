@@ -17,9 +17,9 @@ message Job {
   cresplanex.nova.v1.NullableString code = 10;
   cresplanex.nova.v1.NullableString caption = 11;
   cresplanex.nova.v1.NullableAny error_attributes = 12;
-  cresplanex.nova.v1.NullableTimestamp started_at = 13;
-  cresplanex.nova.v1.NullableTimestamp expired_at = 14;
-  cresplanex.nova.v1.NullableTimestamp completed_at = 15;
+  cresplanex.nova.v1.NullableString started_at = 13;
+  cresplanex.nova.v1.NullableString expired_at = 14;
+  cresplanex.nova.v1.NullableString completed_at = 15;
 }
 
 message JobAction {
