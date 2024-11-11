@@ -7,6 +7,7 @@ import "cresplanex/nova/v1/list.proto";
 
 service JobService {
   rpc CreateJob(CreateJobRequest) returns (CreateJobResponse);
+  rpc FindJob(FindJobRequest) returns (FindJobResponse);
 }
 
 message CreateJobRequest {
