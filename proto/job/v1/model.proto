@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package job.v1;
+
+import "cresplanex/nova/v1/nullable.proto";
+
+message Job {
+  string jon_id = 1;
+  bool initialized = 2;
+  bool success = 3;
+  bool process = 4;
+  bool is_valid = 5;
+  cresplanex.nova.v1.NullableAny data = 6;
+  cresplanex.nova.v1.NullableStringArray scheduled_actions = 7;
+  string pending_action = 8;
+  repeated JobAction completed_actions = 9;
+  cresplanex.nova.v1.NullableString code = 10;
+  cresplanex.nova.v1.NullableString caption = 11;
+  cresplanex.nova.v1.NullableAny error_attributes = 12;
+  cresplanex.nova.v1.NullableTimestamp started_at = 13;
+  cresplanex.nova.v1.NullableTimestamp expired_at = 14;
+  cresplanex.nova.v1.NullableTimestamp completed_at = 15;
+}
+
+message JobAction {
+  string action_code = 1;
+  bool success = 2;
+  cresplanex.nova.v1.NullableAny data = 3;
+  string code = 4;
+  cresplanex.nova.v1.NullableAny error_attributes = 5;
+  string datetime = 6;
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package job.v1;
+
+import "job/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+
+service UserProfileService {
+  rpc CreateJob(CreateJobRequest) returns (CreateJobResponse);
+}
+
+message CreateJobRequest {
+}
+
+message CreateJobResponse {
+  string job_id = 1; // job ID
+}
