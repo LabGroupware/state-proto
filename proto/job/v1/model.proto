@@ -27,6 +27,7 @@ message JobAction {
   bool success = 2;
   cresplanex.nova.v1.NullableAny data = 3;
   string code = 4;
-  cresplanex.nova.v1.NullableAny error_attributes = 5;
-  string datetime = 6;
+  string caption = 5;
+  cresplanex.nova.v1.NullableAny error_attributes = 6;
+  string datetime = 7;
 }
