@@ -12,7 +12,7 @@ message Job {
   bool is_valid = 5;
   cresplanex.nova.v1.NullableAny data = 6;
   cresplanex.nova.v1.NullableStringArray scheduled_actions = 7;
-  string pending_action = 8;
+  cresplanex.nova.v1.NullableString pending_action = 8;
   repeated JobAction completed_actions = 9;
   cresplanex.nova.v1.NullableString code = 10;
   cresplanex.nova.v1.NullableString caption = 11;
