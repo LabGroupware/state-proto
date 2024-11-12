@@ -2,5 +2,5 @@
 version: v2
 deps:
   - name: buf.build/labgroupware/common
-    commit: 90408e06a1d7436faf8b12c4cd6bd688
-    digest: b5:4be650f6795f57651844cbd3a0909b8f3586c3e36d6e108e253300ca070a42f55b086bffccc42ff4d0f4bfeec10b542952b4b63565acf39c86b74b21b1ab46c5
+    commit: f2872bea1ff040039b83530e9460d7f9
+    digest: b5:d0bf938c1974f0caed3c4fac81e81a2544b80f5201235e057face8c94ccdc1474d393a95106eac70b33eb0e5b713c5e0de1470d03db2366de784f3a937bbbd1c
