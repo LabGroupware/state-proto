@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package userpreference.v1;
+
+import "userpreference/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+import "cresplanex/nova/v1/nullable.proto";
+
+service UserPreferenceService {
+  rpc FindUserPreference(FindUserPreferenceRequest) returns (FindUserPreferenceResponse);
+  rpc FindUserPreferenceByUserId(FindUserPreferenceByUserIdRequest) returns (FindUserPreferenceByUserIdResponse);
+  rpc GetUserPreferences(GetUserPreferencesRequest) returns (GetUserPreferencesResponse);
+  rpc UpdateUserPreference(UpdateUserPreferenceRequest) returns (UpdateUserPreferenceResponse);
+}
+
+message FindUserPreferenceRequest {
+  string user_preference_id = 1;
+}
+
+message FindUserPreferenceResponse {
+  UserPreference user_preference = 1;
+}
+
+message FindUserPreferenceByUserIdRequest {
+  string user_id = 1;
+}
+
+message FindUserPreferenceByUserIdResponse {
+  UserPreference user_preference = 1;
+}
+
+message GetUserPreferencesRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetUserPreferencesResponse {
+  repeated UserPreference user_preferences = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message UpdateUserPreferenceRequest {
+  string operation_id = 1;
+  string user_preference_id = 2;
+  cresplanex.nova.v1.NullableString timezone = 3;
+  cresplanex.nova.v1.NullableString theme = 4;
+  cresplanex.nova.v1.NullableString languag = 5;
+}
+
+message UpdateUserPreferenceResponse {
+  string job_id = 1;
+}

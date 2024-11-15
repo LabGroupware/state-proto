@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package userpreference.v1;
+
+import "userpreference/v1/type.proto";
+
+enum UserPreferenceServiceErrorCode {
+  USER_PREFERENCE_SERVICE_ERROR_CODE_UNSPECIFIED = 0;
+  USER_PREFERENCE_SERVICE_ERROR_CODE_INTERNAL = 1;
+  USER_PREFERENCE_SERVICE_ERROR_CODE_USER_PREFERENCE_NOT_FOUND = 2;
+}
+
+message UserPreferenceServiceErrorMeta {
+  UserPreferenceServiceErrorCode code = 1;
+  string message = 2;
+}
+
+message UserPreferenceServiceInternalError {
+  UserPreferenceServiceErrorMeta meta = 1;
+}
+
+message UserPreferenceServiceUserPreferenceNotFoundError {
+  UserPreferenceServiceErrorMeta meta = 1;
+  UserPreferenceUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string user_preference_id = 3;
+    string user_id = 4;
+  }
+}
+
+message UserPreferenceServiceError {
+  oneof error {
+    UserPreferenceServiceInternalError internal_error = 1;
+    UserPreferenceServiceUserPreferenceNotFoundError user_preference_not_found_error = 2;
+  }
+}

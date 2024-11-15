@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package storage.v1;
+
+enum StorageUniqueFieldType {
+    STORAGE_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    STORAGE_UNIQUE_FIELD_TYPE_STORAGE_ID = 1;
+}
+
+enum FileObjectUniqueFieldType {
+    FILE_OBJECT_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    FILE_OBJECT_UNIQUE_FIELD_TYPE_FILE_OBJECT_ID = 1;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package userpreference.v1;
+
+enum UserPreferenceUniqueFieldType {
+    USER_PREFERENCE_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    USER_PREFERENCE_UNIQUE_FIELD_TYPE_USER_PREFERENCE_ID = 1;
+    USER_PREFERENCE_UNIQUE_FIELD_TYPE_USER_ID = 2;
+}

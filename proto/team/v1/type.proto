@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package team.v1;
+
+message OrganizationIdAndName {
+    string organization_id = 1;
+    string name = 2;
+}
+
+enum TeamUniqueFieldType {
+    TEAM_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    TEAM_UNIQUE_FIELD_TYPE_TEAM_ID = 1;
+    TEAM_UNIQUE_FIELD_TYPE_ORGANIZATION_ID_AND_NAME = 2;
+}

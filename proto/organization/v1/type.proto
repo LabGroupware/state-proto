@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package organization.v1;
+
+enum OrganizationUniqueFieldType {
+    ORGANIZATION_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    ORGANIZATION_UNIQUE_FIELD_TYPE_ORGANIZATION_ID = 1;
+}

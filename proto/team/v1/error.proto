@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package team.v1;
+
+import "team/v1/type.proto";
+
+enum TeamServiceErrorCode {
+  TEAM_SERVICE_ERROR_CODE_UNSPECIFIED = 0;
+  TEAM_SERVICE_ERROR_CODE_INTERNAL = 1;
+  TEAM_SERVICE_ERROR_CODE_TEAM_NOT_FOUND = 2;
+}
+
+message TeamServiceErrorMeta {
+  TeamServiceErrorCode code = 1;
+  string message = 2;
+}
+
+message TeamServiceInternalError {
+  TeamServiceErrorMeta meta = 1;
+}
+
+message TeamServiceTeamNotFoundError {
+  TeamServiceErrorMeta meta = 1;
+  TeamUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string team_id = 3;
+    OrganizationIdAndName organization_id_and_name = 4;
+  }
+}
+
+message TeamServiceError {
+  oneof error {
+    TeamServiceInternalError internal_error = 1;
+    TeamServiceTeamNotFoundError team_not_found_error = 2;
+  }
+}

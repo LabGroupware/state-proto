@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package team.v1;
+
+import "cresplanex/nova/v1/nullable.proto";
+
+message Team {
+    string team_id = 1;
+    string organization_id = 2;
+    string name = 3;
+    cresplanex.nova.v1.NullableString description = 4;
+    bool is_default = 5;
+}
+
+message TeamUser {
+    string team_user_id = 1;
+    string team_id = 2;
+    string user_id = 3;
+}
+
+message UserOnTeam {
+    string user_id = 2;
+}
+
+message TeamWithUsers {
+    Team team = 1;
+    repeated UserOnTeam users = 2;
+}

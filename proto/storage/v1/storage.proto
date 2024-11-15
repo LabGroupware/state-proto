@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package storage.v1;
+
+import "storage/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+
+service StorageService {
+  rpc FindFileObject(FindFileObjectRequest) returns (FindFileObjectResponse);
+  rpc GetFileObjects(GetFileObjectsRequest) returns (GetFileObjectsResponse);
+  rpc CreateFileObject(CreateFileObjectRequest) returns (CreateFileObjectResponse);
+}
+
+message FindFileObjectRequest {
+  string file_object_id = 1;
+}
+
+message FindFileObjectResponse {
+  FileObject file_object = 1;
+}
+
+message GetFileObjectsRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetFileObjectsResponse {
+  repeated FileObject file_objects = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message CreateFileObjectRequest {
+  string operation_id = 1;
+  string bucket_id = 2;
+  string name = 3;
+  string path = 4;
+}
+
+message CreateFileObjectResponse {
+  string job_id = 1;
+}

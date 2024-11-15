@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package plan.v1;
+
+// message Plan {
+
+// }
+
+// message PlanBucket {
+// }
+
+message Task {
+    string task_id = 1;
+    string team_id = 2;
+    string charge_user_id = 3;
+    string title = 4;
+    string description = 5;
+    string status = 6;
+    string start_datetime = 7;
+    string end_datetime = 8;
+}
+
+message TaskAttachment {
+    string task_attachment_id = 1;
+    string task_id = 2;
+    string file_object_id = 3;
+}
+
+message FileObjectOnTask {
+    string file_object_id = 1;
+}
+
+message TaskWithAttachments {
+    Task task = 1;
+    repeated FileObjectOnTask attachments = 2;
+}

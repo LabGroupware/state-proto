@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package plan.v1;
+
+import "plan/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+
+service PlanService {
+  rpc FindTask(FindTaskRequest) returns (FindTaskResponse);
+  rpc FindTaskWithAttachments(FindTaskWithAttachmentsRequest) returns (FindTaskWithAttachmentsResponse);
+  rpc GetTasks(GetTasksRequest) returns (GetTasksResponse);
+  rpc GetTasksWithAttachments(GetTasksWithAttachmentsRequest) returns (GetTasksWithAttachmentsResponse);
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+  rpc UpdateTaskStatus(UpdateTaskStatusRequest) returns (UpdateTaskStatusResponse);
+}
+
+message FindTaskRequest {
+  string task_id = 1;
+}
+
+message FindTaskResponse {
+  Task task = 1;
+}
+
+message FindTaskWithAttachmentsRequest {
+  string task_id = 1;
+}
+
+message FindTaskWithAttachmentsResponse {
+  TaskWithAttachments task = 1;
+}
+
+message GetTasksRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetTasksResponse {
+  repeated Task tasks = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message GetTasksWithAttachmentsRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetTasksWithAttachmentsResponse {
+  repeated TaskWithAttachments tasks = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message PlanAttachementRequestType {
+  string file_object_id = 1;
+}
+
+message CreateTaskRequest {
+  string operation_id = 1;
+  string team_id = 2;
+  string charge_user_id = 3;
+  string title = 4;
+  string description = 5;
+  string start_datetime = 7;
+  string end_datetime = 8;
+  repeated PlanAttachementRequestType attachments = 9;
+}
+
+message CreateTaskResponse {
+  string job_id = 1;
+}
+
+message UpdateTaskStatusRequest {
+  string operation_id = 1;
+  string task_id = 2;
+  string status = 3;
+}
+
+message UpdateTaskStatusResponse {
+  string job_id = 1;
+}

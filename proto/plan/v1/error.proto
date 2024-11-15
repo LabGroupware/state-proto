@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package plan.v1;
+
+import "plan/v1/type.proto";
+
+enum PlanServiceErrorCode {
+  PLAN_SERVICE_ERROR_CODE_UNSPECIFIED = 0;
+  PLAN_SERVICE_ERROR_CODE_INTERNAL = 1;
+  PLAN_SERVICE_ERROR_CODE_PLAN_NOT_FOUND = 2;
+  PLAN_SERVICE_ERROR_CODE_TASK_NOT_FOUND = 3;
+}
+
+message PlanServiceErrorMeta {
+  PlanServiceErrorCode code = 1;
+  string message = 2;
+}
+
+message PlanServiceInternalError {
+  PlanServiceErrorMeta meta = 1;
+}
+
+message PlanServicePlanNotFoundError {
+  PlanServiceErrorMeta meta = 1;
+  PlanUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string plan_id = 3;
+  }
+}
+
+message PlanServiceTaskNotFoundError {
+  PlanServiceErrorMeta meta = 1;
+  TaskUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string task_id = 3;
+  }
+}
+
+message PlanServiceError {
+  oneof error {
+    PlanServiceInternalError internal_error = 1;
+    PlanServicePlanNotFoundError plan_not_found_error = 2;
+    PlanServiceTaskNotFoundError task_not_found_error = 3;
+  }
+}

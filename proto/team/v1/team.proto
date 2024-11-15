@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package team.v1;
+
+import "team/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+import "cresplanex/nova/v1/nullable.proto";
+
+service TeamService {
+  rpc FindTeam(FindTeamRequest) returns (FindTeamResponse);
+  rpc FindTeamWithUsers(FindTeamWithUsersRequest) returns (FindTeamWithUsersResponse);
+  rpc GetTeams(GetTeamsRequest) returns (GetTeamsResponse);
+  rpc GetTeamsWithUsers(GetTeamsWithUsersRequest) returns (GetTeamsWithUsersResponse);
+  rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse);
+  rpc AddTeamUser(AddTeamUserRequest) returns (AddTeamUserResponse);
+}
+
+message FindTeamRequest {
+  string team_id = 1;
+}
+
+message FindTeamResponse {
+  Team team = 1;
+}
+
+message FindTeamWithUsersRequest {
+  string team_id = 1;
+}
+
+message FindTeamWithUsersResponse {
+  TeamWithUsers team = 1;
+}
+
+message GetTeamsRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetTeamsResponse {
+  repeated Team teams = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message GetTeamsWithUsersRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetTeamsWithUsersResponse {
+  repeated TeamWithUsers teams = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message TeamUserRequestType {
+  string user_id = 2;
+}
+
+message CreateTeamRequest {
+  string operation_id = 1;
+  string name = 2;
+  cresplanex.nova.v1.NullableString description = 3;
+  repeated TeamUserRequestType users = 4;
+}
+
+message CreateTeamResponse {
+  string job_id = 1;
+}
+
+message AddTeamUserRequest {
+  string operation_id = 1;
+  string team_id = 2;
+  repeated TeamUserRequestType users = 3;
+}
+
+message AddTeamUserResponse {
+  string job_id = 1;
+}

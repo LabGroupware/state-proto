@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package storage.v1;
+
+import "cresplanex/nova/v1/nullable.proto";
+
+// message Storage {
+//     string storage_id = 1;
+//     oneof owner_id {
+//         string organization_id = 2;
+//         string team_id = 3;
+//         string user_id = 4;
+//     }
+//     string name = 3;
+//     cresplanex.nova.v1.NullableString description = 4;
+//     bool is_default = 5;
+// }
+
+// message Bucket {
+//     string bucket_id = 1;
+//     string storage_id = 2;
+//     string name = 3;
+//     cresplanex.nova.v1.NullableString description = 4;
+//     bool is_default = 5;
+// }
+
+message FileObject {
+    string file_object_id = 1;
+    string bucket_id = 2;
+    string name = 3;
+    string path = 4;
+    cresplanex.nova.v1.NullableString mime_type = 5;
+    cresplanex.nova.v1.NullableInt64 size = 6;
+    cresplanex.nova.v1.NullableString checksum = 7;
+}
+
+// message ObjectLabel {
+//     string object_label_id = 1;
+//     string object_id = 2;
+//     string label_id = 3;
+// }
+
+// message BucketView {
+// }

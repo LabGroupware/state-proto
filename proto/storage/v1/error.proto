@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package storage.v1;
+
+import "storage/v1/type.proto";
+
+enum StorageServiceErrorCode {
+  STORAGE_SERVICE_ERROR_CODE_UNSPECIFIED = 0;
+  STORAGE_SERVICE_ERROR_CODE_INTERNAL = 1;
+  STORAGE_SERVICE_ERROR_CODE_STORAGE_NOT_FOUND = 2;
+  STORAGE_SERVICE_ERROR_CODE_FILE_OBJECT_NOT_FOUND = 3;
+}
+
+message StorageServiceErrorMeta {
+  StorageServiceErrorCode code = 1;
+  string message = 2;
+}
+
+message StorageServiceInternalError {
+  StorageServiceErrorMeta meta = 1;
+}
+
+message StorageServiceStorageNotFoundError {
+  StorageServiceErrorMeta meta = 1;
+  StorageUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string storage_id = 3;
+  }
+}
+
+message StorageServiceFileObjectNotFoundError {
+  StorageServiceErrorMeta meta = 1;
+  FileObjectUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string file_object_id = 3;
+  }
+}
+
+message StorageServiceError {
+  oneof error {
+    StorageServiceInternalError internal_error = 1;
+    StorageServiceStorageNotFoundError storage_not_found_error = 2;
+    StorageServiceFileObjectNotFoundError file_object_not_found_error = 3;
+  }
+}

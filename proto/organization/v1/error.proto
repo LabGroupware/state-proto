@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package organization.v1;
+
+import "organization/v1/type.proto";
+
+enum OrganizationServiceErrorCode {
+  ORGANIZATION_SERVICE_ERROR_CODE_UNSPECIFIED = 0;
+  ORGANIZATION_SERVICE_ERROR_CODE_INTERNAL = 1;
+  ORGANIZATION_SERVICE_ERROR_CODE_ORGANIZATION_NOT_FOUND = 2;
+}
+
+message OrganizationServiceErrorMeta {
+  OrganizationServiceErrorCode code = 1;
+  string message = 2;
+}
+
+message OrganizationServiceInternalError {
+  OrganizationServiceErrorMeta meta = 1;
+}
+
+message OrganizationServiceOrganizationNotFoundError {
+  OrganizationServiceErrorMeta meta = 1;
+  OrganizationUniqueFieldType find_field_type = 2;
+  oneof find_field_value {
+    string organization_id = 3;
+  }
+}
+
+message OrganizationServiceError {
+  oneof error {
+    OrganizationServiceInternalError internal_error = 1;
+    OrganizationServiceOrganizationNotFoundError organization_not_found_error = 2;
+  }
+}

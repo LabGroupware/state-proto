@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package organization.v1;
+
+import "organization/v1/model.proto";
+import "cresplanex/nova/v1/list.proto";
+
+service OrganizationService {
+  rpc FindOrganization(FindOrganizationRequest) returns (FindOrganizationResponse);
+  rpc FindOrganizationWithUsers(FindOrganizationWithUsersRequest) returns (FindOrganizationWithUsersResponse);
+  rpc GetOrganizations(GetOrganizationsRequest) returns (GetOrganizationsResponse);
+  rpc GetOrganizationsWithUsers(GetOrganizationsWithUsersRequest) returns (GetOrganizationsWithUsersResponse);
+  rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse);
+  rpc AddOrganizationUser(AddOrganizationUserRequest) returns (AddOrganizationUserResponse);
+}
+
+message FindOrganizationRequest {
+  string organization_id = 1;
+}
+
+message FindOrganizationResponse {
+  Organization organization = 1;
+}
+
+message FindOrganizationWithUsersRequest {
+  string organization_id = 1;
+}
+
+message FindOrganizationWithUsersResponse {
+  OrganizationWithUsers organization = 1;
+}
+
+message GetOrganizationsRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetOrganizationsResponse {
+  repeated Organization organizations = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message GetOrganizationsWithUsersRequest {
+  cresplanex.nova.v1.Pagination pagination = 1;
+  cresplanex.nova.v1.Sort sort = 2;
+  bool with_count = 3;
+}
+
+message GetOrganizationsWithUsersResponse {
+  repeated OrganizationWithUsers organizations = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
+message CreateOrganizationRequest {
+  string operation_id = 1;
+  string name = 2;
+  string plan = 3;
+  repeated UserOnOraganization users = 4;
+}
+
+message CreateOrganizationResponse {
+  string job_id = 1;
+}
+
+message AddOrganizationUserRequest {
+  string operation_id = 1;
+  string organization_id = 2;
+  repeated UserOnOraganization users = 3;
+}
+
+message AddOrganizationUserResponse {
+  string job_id = 1;
+}

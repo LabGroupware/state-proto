@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package plan.v1;
+
+enum PlanUniqueFieldType {
+    PLAN_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    PLAN_UNIQUE_FIELD_TYPE_PLAN_ID = 1;
+}
+
+enum TaskUniqueFieldType {
+    TASK_UNIQUE_FIELD_TYPE_UNSPECIFIED = 0;
+    TASK_UNIQUE_FIELD_TYPE_TASK_ID = 1;
+}

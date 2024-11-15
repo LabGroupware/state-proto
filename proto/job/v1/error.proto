@@ -23,13 +23,13 @@ message JobServiceJobNotFoundError {
   JobServiceErrorMeta meta = 1;
   JobUniqueFieldType find_field_type = 2;
   oneof find_field_value {
-    string Job_id = 3;
+    string job_id = 3;
   }
 }
 
 message JobServiceError {
   oneof error {
     JobServiceInternalError internal_error = 1;
-    JobServiceJobNotFoundError JOB_not_found_error = 2;
+    JobServiceJobNotFoundError job_not_found_error = 2;
   }
 }

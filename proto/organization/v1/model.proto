@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package organization.v1;
+
+import "cresplanex/nova/v1/nullable.proto";
+
+message Organization {
+    string organization_id = 1;
+    string owner_id = 2;
+    string name = 3;
+    string plan = 4;
+    cresplanex.nova.v1.NullableString site_url = 5;
+}
+
+message OrganizationUser {
+    string organization_user_id = 1;
+    string organization_id = 2;
+    string user_id = 3;
+}
+
+message UserOnOraganization {
+    string user_id = 2;
+}
+
+message OrganizationWithUsers {
+    Organization organization = 1;
+    repeated UserOnOraganization users = 2;
+}
