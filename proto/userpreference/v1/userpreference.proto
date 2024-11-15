@@ -45,7 +45,7 @@ message UpdateUserPreferenceRequest {
   string user_preference_id = 2;
   cresplanex.nova.v1.NullableString timezone = 3;
   cresplanex.nova.v1.NullableString theme = 4;
-  cresplanex.nova.v1.NullableString languag = 5;
+  cresplanex.nova.v1.NullableString language = 5;
 }
 
 message UpdateUserPreferenceResponse {

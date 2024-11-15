@@ -9,6 +9,6 @@ message UserPreference {
     string user_id = 2;
     cresplanex.nova.v1.NullableString timezone = 3; // タイムゾーン (例：Europe/Paris)
     cresplanex.nova.v1.NullableString theme = 4; // テーマ (例：light、darkなど)
-    cresplanex.nova.v1.NullableString languag = 5; // 言語 (例：ja、enなど)
+    cresplanex.nova.v1.NullableString language = 5; // 言語 (例：ja、enなど)
     cresplanex.nova.v1.NullableString notification_setting_id = 6; // 通知設定ID
 }
