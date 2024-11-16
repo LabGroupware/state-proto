@@ -57,7 +57,7 @@ message PlanAttachementRequestType {
 }
 
 message CreateTaskRequest {
-  string operation_id = 1;
+  string operator_id = 1;
   string team_id = 2;
   string charge_user_id = 3;
   string title = 4;
@@ -72,7 +72,7 @@ message CreateTaskResponse {
 }
 
 message UpdateTaskStatusRequest {
-  string operation_id = 1;
+  string operator_id = 1;
   string task_id = 2;
   string status = 3;
 }

@@ -31,7 +31,7 @@ message GetFileObjectsResponse {
 }
 
 message CreateFileObjectRequest {
-  string operation_id = 1;
+  string operator_id = 1;
   string bucket_id = 2;
   string name = 3;
   string path = 4;

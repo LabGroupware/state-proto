@@ -53,7 +53,7 @@ message GetOrganizationsWithUsersResponse {
 }
 
 message CreateOrganizationRequest {
-  string operation_id = 1;
+  string operator_id = 1;
   string name = 2;
   string plan = 3;
   repeated UserOnOraganization users = 4;
@@ -64,7 +64,7 @@ message CreateOrganizationResponse {
 }
 
 message AddOrganizationUserRequest {
-  string operation_id = 1;
+  string operator_id = 1;
   string organization_id = 2;
   repeated UserOnOraganization users = 3;
 }
