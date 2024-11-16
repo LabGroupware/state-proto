@@ -18,11 +18,11 @@ message OrganizationUser {
     string user_id = 3;
 }
 
-message UserOnOraganization {
+message UserOnOrganization {
     string user_id = 2;
 }
 
 message OrganizationWithUsers {
     Organization organization = 1;
-    repeated UserOnOraganization users = 2;
+    repeated UserOnOrganization users = 2;
 }
