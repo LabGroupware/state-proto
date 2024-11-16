@@ -17,7 +17,7 @@ message Task {
     string description = 5;
     string status = 6;
     string start_datetime = 7;
-    string end_datetime = 8;
+    string due_datetime = 8;
 }
 
 message TaskAttachment {

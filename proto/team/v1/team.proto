@@ -59,9 +59,10 @@ message TeamUserRequestType {
 
 message CreateTeamRequest {
   string operator_id = 1;
-  string name = 2;
-  cresplanex.nova.v1.NullableString description = 3;
-  repeated TeamUserRequestType users = 4;
+  string organization_id = 2;
+  string name = 3;
+  cresplanex.nova.v1.NullableString description = 4;
+  repeated TeamUserRequestType users = 5;
 }
 
 message CreateTeamResponse {

@@ -63,7 +63,7 @@ message CreateTaskRequest {
   string title = 4;
   string description = 5;
   string start_datetime = 7;
-  string end_datetime = 8;
+  string due_datetime = 8;
   repeated PlanAttachementRequestType attachments = 9;
 }
 
