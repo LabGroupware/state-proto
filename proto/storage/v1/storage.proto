@@ -8,6 +8,7 @@ import "cresplanex/nova/v1/list.proto";
 service StorageService {
   rpc FindFileObject(FindFileObjectRequest) returns (FindFileObjectResponse);
   rpc GetFileObjects(GetFileObjectsRequest) returns (GetFileObjectsResponse);
+  rpc GetPluralFileObjects(GetPluralFileObjectsRequest) returns (GetPluralFileObjectsResponse);
   rpc CreateFileObject(CreateFileObjectRequest) returns (CreateFileObjectResponse);
 }
 
@@ -19,15 +20,41 @@ message FindFileObjectResponse {
   FileObject file_object = 1;
 }
 
+enum FileObjectOrderField {
+  FILE_OBJECT_ORDER_FIELD_UNSPECIFIED = 0;
+  FILE_OBJECT_ORDER_FIELD_CREATE = 1;
+  FILE_OBJECT_ORDER_FIELD_NAME = 2;
+}
+
+message FileObjectSort {
+  FileObjectOrderField field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message FileObjectFilterBucket {
+  bool has_value = 1;
+  repeated string bucket_ids = 2;
+}
+
 message GetFileObjectsRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  FileObjectSort sort = 2;
   bool with_count = 3;
+  FileObjectFilterBucket filter_bucket = 4;
 }
 
 message GetFileObjectsResponse {
   repeated FileObject file_objects = 1;
   cresplanex.nova.v1.Count count = 2;
+}
+
+message GetPluralFileObjectsRequest {
+  repeated string file_object_ids = 1;
+  FileObjectSort sort = 2;
+}
+
+message GetPluralFileObjectsResponse {
+  repeated FileObject file_objects = 1;
 }
 
 message CreateFileObjectRequest {

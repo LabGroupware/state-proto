@@ -10,7 +10,9 @@ service TeamService {
   rpc FindTeam(FindTeamRequest) returns (FindTeamResponse);
   rpc FindTeamWithUsers(FindTeamWithUsersRequest) returns (FindTeamWithUsersResponse);
   rpc GetTeams(GetTeamsRequest) returns (GetTeamsResponse);
+  rpc GetPluralTeams(GetPluralTeamsRequest) returns (GetPluralTeamsResponse);
   rpc GetTeamsWithUsers(GetTeamsWithUsersRequest) returns (GetTeamsWithUsersResponse);
+  rpc GetPluralTeamsWithUsers(GetPluralTeamsWithUsersRequest) returns (GetPluralTeamsWithUsersResponse);
   rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse);
   rpc AddTeamUser(AddTeamUserRequest) returns (AddTeamUserResponse);
 }
@@ -31,10 +33,40 @@ message FindTeamWithUsersResponse {
   TeamWithUsers team = 1;
 }
 
+enum TeamOrderField {
+  TEAM_ORDER_FIELD_UNSPECIFIED = 0;
+  TEAM_ORDER_FIELD_CREATE = 1;
+  TEAM_ORDER_FIELD_NAME = 2;
+}
+
+message TeamSort {
+  TeamOrderField field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message TeamFilterIsDefault {
+  bool has_value = 1;
+  repeated string is_default = 2;
+}
+
+message TeamFilterOrganization {
+  bool has_value = 1;
+  repeated string organization_ids = 2;
+}
+
+message TeamFilterUser {
+  bool has_value = 1;
+  bool any = 2;
+  repeated string user_ids = 3;
+}
+
 message GetTeamsRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  TeamSort sort = 2;
   bool with_count = 3;
+  TeamFilterIsDefault filter_is_default = 4;
+  TeamFilterOrganization filter_organization = 5;
+  TeamFilterUser filter_user = 6;
 }
 
 message GetTeamsResponse {
@@ -42,15 +74,36 @@ message GetTeamsResponse {
   cresplanex.nova.v1.Count count = 2;
 }
 
+message GetPluralTeamsRequest {
+  repeated string team_ids = 1;
+  TeamSort sort = 2;
+}
+
+message GetPluralTeamsResponse {
+  repeated Team teams = 1;
+}
+
 message GetTeamsWithUsersRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  TeamSort sort = 2;
   bool with_count = 3;
+  TeamFilterIsDefault filter_is_default = 4;
+  TeamFilterOrganization filter_organization = 5;
+  TeamFilterUser filter_user = 6;
 }
 
 message GetTeamsWithUsersResponse {
   repeated TeamWithUsers teams = 1;
   cresplanex.nova.v1.Count count = 2;
+}
+
+message GetPluralTeamsWithUsersRequest {
+  repeated string team_ids = 1;
+  TeamSort sort = 2;
+}
+
+message GetPluralTeamsWithUsersResponse {
+  repeated TeamWithUsers teams = 1;
 }
 
 message TeamUserRequestType {

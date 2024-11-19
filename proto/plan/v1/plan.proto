@@ -9,7 +9,9 @@ service PlanService {
   rpc FindTask(FindTaskRequest) returns (FindTaskResponse);
   rpc FindTaskWithAttachments(FindTaskWithAttachmentsRequest) returns (FindTaskWithAttachmentsResponse);
   rpc GetTasks(GetTasksRequest) returns (GetTasksResponse);
+  rpc GetPluralTasks(GetPluralTasksRequest) returns (GetPluralTasksResponse);
   rpc GetTasksWithAttachments(GetTasksWithAttachmentsRequest) returns (GetTasksWithAttachmentsResponse);
+  rpc GetPluralTasksWithAttachments(GetPluralTasksWithAttachmentsRequest) returns (GetPluralTasksWithAttachmentsResponse);
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc UpdateTaskStatus(UpdateTaskStatusRequest) returns (UpdateTaskStatusResponse);
 }
@@ -30,10 +32,57 @@ message FindTaskWithAttachmentsResponse {
   TaskWithAttachments task = 1;
 }
 
+enum TaskOrderField {
+  TASK_ORDER_FIELD_UNSPECIFIED = 0;
+  TASK_ORDER_FIELD_CREATE = 1;
+  TASK_ORDER_FIELD_TITLE = 2;
+  TASK_ORDER_FIELD_START_DATETIME = 3;
+  TASK_ORDER_FIELD_DUE_DATETIME = 4;
+}
+
+message TaskSort {
+  TaskOrderField field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message TaskFilterTeam {
+  bool has_value = 1;
+  repeated string team_ids = 2;
+}
+
+message TaskFilterStatus {
+  bool has_value = 1;
+  repeated string statuses = 2;
+}
+
+message TaskFilterChargeUser {
+  bool has_value = 1;
+  repeated string charge_user_ids = 2;
+}
+
+message TaskFilterStartDatetime {
+  bool earlier_infinite = 1;
+  bool later_infinite = 2;
+  string earlier_than = 3;
+  string later_than = 4;
+}
+
+message TaskFilterDueDatetime {
+  bool earlier_infinite = 1;
+  bool later_infinite = 2;
+  string earlier_than = 3;
+  string later_than = 4;
+}
+
 message GetTasksRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  TaskSort sort = 2;
   bool with_count = 3;
+  TaskFilterTeam filter_team = 4;
+  TaskFilterStatus filter_status = 5;
+  TaskFilterChargeUser filter_charge_user = 6;
+  TaskFilterStartDatetime filter_start_datetime = 7;
+  TaskFilterDueDatetime filter_due_datetime = 8;
 }
 
 message GetTasksResponse {
@@ -41,15 +90,38 @@ message GetTasksResponse {
   cresplanex.nova.v1.Count count = 2;
 }
 
+message GetPluralTasksRequest {
+  repeated string task_ids = 1;
+  TaskSort sort = 2;
+}
+
+message GetPluralTasksResponse {
+  repeated Task tasks = 1;
+}
+
 message GetTasksWithAttachmentsRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  TaskSort sort = 2;
   bool with_count = 3;
+  TaskFilterTeam filter_team = 4;
+  TaskFilterStatus filter_status = 5;
+  TaskFilterChargeUser filter_charge_user = 6;
+  TaskFilterStartDatetime filter_start_datetime = 7;
+  TaskFilterDueDatetime filter_due_datetime = 8;
 }
 
 message GetTasksWithAttachmentsResponse {
   repeated TaskWithAttachments tasks = 1;
   cresplanex.nova.v1.Count count = 2;
+}
+
+message GetPluralTasksWithAttachmentsRequest {
+  repeated string task_ids = 1;
+  TaskSort sort = 2;
+}
+
+message GetPluralTasksWithAttachmentsResponse {
+  repeated TaskWithAttachments tasks = 1;
 }
 
 message PlanAttachementRequestType {

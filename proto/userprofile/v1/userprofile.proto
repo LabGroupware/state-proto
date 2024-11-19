@@ -10,6 +10,7 @@ service UserProfileService {
   rpc FindUserProfileByUserId(FindUserProfileByUserIdRequest) returns (FindUserProfileByUserIdResponse);
   rpc FindUserProfileByEmail(FindUserProfileByEmailRequest) returns (FindUserProfileByEmailResponse);
   rpc GetUserProfiles(GetUserProfilesRequest) returns (GetUserProfilesResponse);
+  rpc GetPluralUserProfiles(GetPluralUserProfilesRequest) returns (GetPluralUserProfilesResponse);
 }
 
 message FindUserProfileRequest {
@@ -36,13 +37,33 @@ message FindUserProfileByEmailResponse {
   UserProfile user_profile = 1;
 }
 
+enum UserProfileOrderField {
+  USER_PROFILE_ORDER_FIELD_UNSPECIFIED = 0;
+  USER_PROFILE_ORDER_FIELD_CREATE = 1;
+  USER_PROFILE_ORDER_FIELD_NAME = 2;
+}
+
+message  UserProfileSort {
+  UserProfileOrderField field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
 message GetUserProfilesRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  UserProfileSort sort = 2;
   bool with_count = 3;
 }
 
 message GetUserProfilesResponse {
   repeated UserProfile user_profiles = 1;
   cresplanex.nova.v1.Count count = 2;
+}
+
+message GetPluralUserProfilesRequest {
+  repeated string user_profile_ids = 1;
+  UserProfileSort sort = 2;
+}
+
+message GetPluralUserProfilesResponse {
+  repeated UserProfile user_profiles = 1;
 }

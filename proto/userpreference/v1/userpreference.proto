@@ -10,6 +10,7 @@ service UserPreferenceService {
   rpc FindUserPreference(FindUserPreferenceRequest) returns (FindUserPreferenceResponse);
   rpc FindUserPreferenceByUserId(FindUserPreferenceByUserIdRequest) returns (FindUserPreferenceByUserIdResponse);
   rpc GetUserPreferences(GetUserPreferencesRequest) returns (GetUserPreferencesResponse);
+  rpc GetPluralUserPreferences(GetPluralUserPreferencesRequest) returns (GetPluralUserPreferencesResponse);
   rpc UpdateUserPreference(UpdateUserPreferenceRequest) returns (UpdateUserPreferenceResponse);
 }
 
@@ -29,15 +30,41 @@ message FindUserPreferenceByUserIdResponse {
   UserPreference user_preference = 1;
 }
 
+enum UserPreferenceOrderField {
+  USER_PREFERENCE_ORDER_FIELD_UNSPECIFIED = 0;
+  USER_PREFERENCE_ORDER_FIELD_CREATE = 1;
+  USER_PREFERENCE_ORDER_FIELD_NAME = 2;
+}
+
+message  UserPreferenceSort {
+  UserPreferenceOrderField field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message UserPreferenceFilterLanguage {
+  bool has_value = 1;
+  repeated string languages = 2;
+}
+
 message GetUserPreferencesRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  cresplanex.nova.v1.Sort sort = 2;
+  UserPreferenceSort sort = 2;
   bool with_count = 3;
+  UserPreferenceFilterLanguage filter_language = 4;
 }
 
 message GetUserPreferencesResponse {
   repeated UserPreference user_preferences = 1;
   cresplanex.nova.v1.Count count = 2;
+}
+
+message GetPluralUserPreferencesRequest {
+  repeated string user_preference_ids = 1;
+  UserPreferenceSort sort = 2;
+}
+
+message GetPluralUserPreferencesResponse {
+  repeated UserPreference user_preferences = 1;
 }
 
 message UpdateUserPreferenceRequest {

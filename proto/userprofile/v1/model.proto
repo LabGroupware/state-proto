@@ -5,7 +5,7 @@ package userprofile.v1;
 import "cresplanex/nova/v1/nullable.proto";
 
 message UserProfile {
-  string user_profile_id = 1; // ユーザープロフィールID
+    string user_profile_id = 1; // ユーザープロフィールID
     string user_id = 2; // ユーザーID
     string name = 3; // フルネーム
     string email = 4; // メールアドレス
