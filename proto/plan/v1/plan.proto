@@ -12,6 +12,8 @@ service PlanService {
   rpc GetPluralTasks(GetPluralTasksRequest) returns (GetPluralTasksResponse);
   rpc GetTasksWithAttachments(GetTasksWithAttachmentsRequest) returns (GetTasksWithAttachmentsResponse);
   rpc GetPluralTasksWithAttachments(GetPluralTasksWithAttachmentsRequest) returns (GetPluralTasksWithAttachmentsResponse);
+  rpc GetFileObjectsOnTask(GetFileObjectsOnTaskRequest) returns (GetFileObjectsOnTaskResponse);
+  rpc GetTasksOnFileObject(GetTasksOnFileObjectRequest) returns (GetTasksOnFileObjectResponse);
   rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
   rpc UpdateTaskStatus(UpdateTaskStatusRequest) returns (UpdateTaskStatusResponse);
 }
@@ -143,7 +145,7 @@ message GetFileObjectsOnTaskRequest {
 
 message GetFileObjectsOnTaskResponse {
   repeated FileObjectOnTask file_objects = 1;
-  bool with_count = 2;
+  cresplanex.nova.v1.Count count = 2;
 }
 
 enum TaskOnFileObjectOrderField {
@@ -160,16 +162,16 @@ message TaskOnFileObjectSort {
 	cresplanex.nova.v1.SortOrder order = 2;
 }
 
-message GetTaskOnFileObjectRequest {
+message GetTasksOnFileObjectRequest {
   string file_object_id = 1;
   cresplanex.nova.v1.Pagination pagination = 2;
   TaskOnFileObjectSort sort = 3;
   bool with_count = 4;
 }
 
-message GetTaskOnFileObjectResponse {
+message GetTasksOnFileObjectResponse {
   repeated TaskOnFileObject teams = 1;
-  bool with_count = 2;
+  cresplanex.nova.v1.Count count = 2;
 }
 
 message PlanAttachementRequestType {

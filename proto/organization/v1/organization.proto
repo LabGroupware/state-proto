@@ -13,7 +13,7 @@ service OrganizationService {
   rpc GetOrganizationsWithUsers(GetOrganizationsWithUsersRequest) returns (GetOrganizationsWithUsersResponse);
   rpc GetPluralOrganizationsWithUsers(GetPluralOrganizationsWithUsersRequest) returns (GetPluralOrganizationsWithUsersResponse);
   rpc GetUsersOnOrganization(GetUsersOnOrganizationRequest) returns (GetUsersOnOrganizationResponse);
-  rpc GetOrganizationOnUser(GetOrganizationOnUserRequest) returns (GetOrganizationOnUserResponse);
+  rpc GetOrganizationsOnUser(GetOrganizationsOnUserRequest) returns (GetOrganizationsOnUserResponse);
   rpc CreateOrganization(CreateOrganizationRequest) returns (CreateOrganizationResponse);
   rpc AddOrganizationUser(AddOrganizationUserRequest) returns (AddOrganizationUserResponse);
 }
@@ -126,7 +126,7 @@ message GetUsersOnOrganizationRequest {
 
 message GetUsersOnOrganizationResponse {
   repeated UserOnOrganization users = 1;
-  bool with_count = 2;
+  cresplanex.nova.v1.Count count = 2;
 }
 
 enum OrganizationOnUserOrderField {
@@ -141,16 +141,16 @@ message OrganizationOnUserSort {
 	cresplanex.nova.v1.SortOrder order = 2;
 }
 
-message GetOrganizationOnUserRequest {
+message GetOrganizationsOnUserRequest {
   string user_id = 1;
   cresplanex.nova.v1.Pagination pagination = 2;
   OrganizationOnUserSort sort = 3;
   bool with_count = 4;
 }
 
-message GetOrganizationOnUserResponse {
+message GetOrganizationsOnUserResponse {
   repeated OrganizationOnUser organizations = 1;
-  bool with_count = 2;
+  cresplanex.nova.v1.Count count = 2;
 }
 
 message OrganizationUserRequestType {
