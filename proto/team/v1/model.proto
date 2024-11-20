@@ -19,10 +19,14 @@ message TeamUser {
 }
 
 message UserOnTeam {
-    string user_id = 2;
+    string user_id = 1;
 }
 
 message TeamWithUsers {
     Team team = 1;
     repeated UserOnTeam users = 2;
+}
+
+message TeamOnUser {
+    Team team = 1;
 }

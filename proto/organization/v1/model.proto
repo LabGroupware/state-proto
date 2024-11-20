@@ -19,10 +19,14 @@ message OrganizationUser {
 }
 
 message UserOnOrganization {
-    string user_id = 2;
+    string user_id = 1;
 }
 
 message OrganizationWithUsers {
     Organization organization = 1;
     repeated UserOnOrganization users = 2;
+}
+
+message OrganizationOnUser {
+    Organization organization = 1;
 }

@@ -34,3 +34,7 @@ message TaskWithAttachments {
     Task task = 1;
     repeated FileObjectOnTask attachments = 2;
 }
+
+message TaskOnFileObject {
+    Task task = 1;
+}

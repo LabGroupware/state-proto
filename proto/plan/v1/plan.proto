@@ -146,6 +146,28 @@ message GetFileObjectsOnTaskResponse {
   bool with_count = 2;
 }
 
+enum TaskOnFileObjectOrderField {
+  TASK_ON_FILE_OBJECT_ORDER_FIELD_UNSPECIFIED = 0;
+  TASK_ON_FILE_OBJECT_ORDER_FIELD_ADD = 1;
+}
+
+message TaskOnFileObjectSort {
+  TaskOnFileObjectOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message GetTaskOnFileObjectRequest {
+  string file_object_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  TaskOnFileObjectSort sort = 3;
+  bool with_count = 4;
+}
+
+message GetTaskOnFileObjectResponse {
+  repeated TaskOnFileObject teams = 1;
+  bool with_count = 2;
+}
+
 message PlanAttachementRequestType {
   string file_object_id = 1;
 }

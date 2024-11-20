@@ -14,6 +14,7 @@ service TeamService {
   rpc GetTeamsWithUsers(GetTeamsWithUsersRequest) returns (GetTeamsWithUsersResponse);
   rpc GetPluralTeamsWithUsers(GetPluralTeamsWithUsersRequest) returns (GetPluralTeamsWithUsersResponse);
   rpc GetUsersOnTeam(GetUsersOnTeamRequest) returns (GetUsersOnTeamResponse);
+  rpc GetTeamOnUser(GetTeamOnUserRequest) returns (GetTeamOnUserResponse);
   rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse);
   rpc AddTeamUser(AddTeamUserRequest) returns (AddTeamUserResponse);
 }
@@ -127,6 +128,28 @@ message GetUsersOnTeamRequest {
 message GetUsersOnTeamResponse {
   repeated UserOnTeam users = 1;
   cresplanex.nova.v1.Count count = 2;
+}
+
+enum TeamOnUserOrderField {
+  TEAM_ON_USER_ORDER_FIELD_UNSPECIFIED = 0;
+  TEAM_ON_USER_ORDER_FIELD_ADD = 1;
+}
+
+message TeamOnUserSort {
+  TeamOnUserOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message GetTeamOnUserRequest {
+  string user_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  TeamOnUserSort sort = 3;
+  bool with_count = 4;
+}
+
+message GetTeamOnUserResponse {
+  repeated TeamOnUser teams = 1;
+  bool with_count = 2;
 }
 
 message TeamUserRequestType {
