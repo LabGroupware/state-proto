@@ -132,6 +132,8 @@ message GetUsersOnOrganizationResponse {
 enum OrganizationOnUserOrderField {
   ORGANIZATION_ON_USER_ORDER_FIELD_UNSPECIFIED = 0;
   ORGANIZATION_ON_USER_ORDER_FIELD_ADD = 1;
+  ORGANIZATION_ON_USER_ORDER_FIELD_CREATE = 2;
+  ORGANIZATION_ON_USER_ORDER_FIELD_NAME = 3;
 }
 
 message OrganizationOnUserSort {

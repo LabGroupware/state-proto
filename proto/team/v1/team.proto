@@ -133,6 +133,8 @@ message GetUsersOnTeamResponse {
 enum TeamOnUserOrderField {
   TEAM_ON_USER_ORDER_FIELD_UNSPECIFIED = 0;
   TEAM_ON_USER_ORDER_FIELD_ADD = 1;
+  TEAM_ON_USER_ORDER_FIELD_CREATE = 2;
+  TEAM_ON_USER_ORDER_FIELD_NAME = 3;
 }
 
 message TeamOnUserSort {
