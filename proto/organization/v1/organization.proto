@@ -84,9 +84,20 @@ message GetPluralOrganizationsResponse {
   repeated Organization organizations = 1;
 }
 
+enum OrganizationWithUsersOrderField {
+  ORGANIZATION_WITH_USERS_ORDER_FIELD_UNSPECIFIED = 0;
+  ORGANIZATION_WITH_USERS_ORDER_FIELD_CREATE = 1;
+  ORGANIZATION_WITH_USERS_ORDER_FIELD_NAME = 2;
+}
+
+message OrganizationWithUsersSort {
+  OrganizationWithUsersOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
 message GetOrganizationsWithUsersRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  OrganizationSort sort = 2;
+  OrganizationWithUsersSort sort = 2;
   bool with_count = 3;
   OrganizationFilterPlan filter_plan = 4;
   OrganizationFilterOwner filter_owner = 5;

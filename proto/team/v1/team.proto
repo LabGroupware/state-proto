@@ -48,7 +48,7 @@ message TeamSort {
 
 message TeamFilterIsDefault {
   bool has_value = 1;
-  repeated string is_default = 2;
+  bool is_default = 2;
 }
 
 message TeamFilterOrganization {
@@ -85,9 +85,20 @@ message GetPluralTeamsResponse {
   repeated Team teams = 1;
 }
 
+enum TeamWithUsersOrderField {
+  TEAM_WITH_USERS_ORDER_FIELD_UNSPECIFIED = 0;
+  TEAM_WITH_USERS_ORDER_FIELD_CREATE = 1;
+  TEAM_WITH_USERS_ORDER_FIELD_NAME = 2;
+}
+
+message TeamWithUsersSort {
+  TeamWithUsersOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
 message GetTeamsWithUsersRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  TeamSort sort = 2;
+  TeamWithUsersSort sort = 2;
   bool with_count = 3;
   TeamFilterIsDefault filter_is_default = 4;
   TeamFilterOrganization filter_organization = 5;

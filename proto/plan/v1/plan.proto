@@ -76,6 +76,12 @@ message TaskFilterDueDatetime {
   string later_than = 4;
 }
 
+message TaskFilterFileObject {
+  bool has_value = 1;
+  bool any = 2;
+  repeated string file_object_ids = 3;
+}
+
 message GetTasksRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
   TaskSort sort = 2;
@@ -85,6 +91,7 @@ message GetTasksRequest {
   TaskFilterChargeUser filter_charge_user = 6;
   TaskFilterStartDatetime filter_start_datetime = 7;
   TaskFilterDueDatetime filter_due_datetime = 8;
+  TaskFilterFileObject filter_file_object = 9;
 }
 
 message GetTasksResponse {
@@ -101,15 +108,30 @@ message GetPluralTasksResponse {
   repeated Task tasks = 1;
 }
 
+enum TaskWithAttachmentsOrderField {
+  TASK_WITH_ATTACHMENTS_ORDER_FIELD_UNSPECIFIED = 0;
+  TASK_WITH_ATTACHMENTS_ORDER_FIELD_CREATE = 1;
+  TASK_WITH_ATTACHMENTS_ORDER_FIELD_TITLE = 2;
+  TASK_WITH_ATTACHMENTS_ORDER_FIELD_START_DATETIME = 3;
+  TASK_WITH_ATTACHMENTS_ORDER_FIELD_DUE_DATETIME = 4;
+}
+
+message TaskWithAttachmentsSort {
+  TaskWithAttachmentsOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+
 message GetTasksWithAttachmentsRequest {
   cresplanex.nova.v1.Pagination pagination = 1;
-  TaskSort sort = 2;
+  TaskWithAttachmentsSort sort = 2;
   bool with_count = 3;
   TaskFilterTeam filter_team = 4;
   TaskFilterStatus filter_status = 5;
   TaskFilterChargeUser filter_charge_user = 6;
   TaskFilterStartDatetime filter_start_datetime = 7;
   TaskFilterDueDatetime filter_due_datetime = 8;
+  TaskFilterFileObject filter_file_object = 9;
 }
 
 message GetTasksWithAttachmentsResponse {
@@ -170,7 +192,7 @@ message GetTasksOnFileObjectRequest {
 }
 
 message GetTasksOnFileObjectResponse {
-  repeated TaskOnFileObject teams = 1;
+  repeated TaskOnFileObject tasks = 1;
   cresplanex.nova.v1.Count count = 2;
 }
 
