@@ -41,7 +41,7 @@ enum TaskOrderField {
 }
 
 message TaskSort {
-  TaskOrderField field = 1;
+  TaskOrderField order_field = 1;
 	cresplanex.nova.v1.SortOrder order = 2;
 }
 
@@ -122,6 +122,28 @@ message GetPluralTasksWithAttachmentsRequest {
 
 message GetPluralTasksWithAttachmentsResponse {
   repeated TaskWithAttachments tasks = 1;
+}
+
+enum FileObjectOnTaskOrderField {
+  FILE_OBJECT_ON_TASK_ORDER_FIELD_UNSPECIFIED = 0;
+  FILE_OBJECT_ON_TASK_ORDER_FIELD_ADD = 1;
+}
+
+message  FileObjectOnTaskSort {
+  FileObjectOnTaskOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message GetFileObjectsOnTaskRequest {
+  string task_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  FileObjectOnTaskSort sort = 3;
+  bool with_count = 4;
+}
+
+message GetFileObjectsOnTaskResponse {
+  repeated FileObjectOnTask file_objects = 1;
+  bool with_count = 2;
 }
 
 message PlanAttachementRequestType {

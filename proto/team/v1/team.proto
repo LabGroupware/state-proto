@@ -13,6 +13,7 @@ service TeamService {
   rpc GetPluralTeams(GetPluralTeamsRequest) returns (GetPluralTeamsResponse);
   rpc GetTeamsWithUsers(GetTeamsWithUsersRequest) returns (GetTeamsWithUsersResponse);
   rpc GetPluralTeamsWithUsers(GetPluralTeamsWithUsersRequest) returns (GetPluralTeamsWithUsersResponse);
+  rpc GetUsersOnTeam(GetUsersOnTeamRequest) returns (GetUsersOnTeamResponse);
   rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse);
   rpc AddTeamUser(AddTeamUserRequest) returns (AddTeamUserResponse);
 }
@@ -40,7 +41,7 @@ enum TeamOrderField {
 }
 
 message TeamSort {
-  TeamOrderField field = 1;
+  TeamOrderField order_field = 1;
 	cresplanex.nova.v1.SortOrder order = 2;
 }
 
@@ -106,8 +107,30 @@ message GetPluralTeamsWithUsersResponse {
   repeated TeamWithUsers teams = 1;
 }
 
+enum UserOnTeamOrderField {
+  USER_ON_TEAM_ORDER_FIELD_UNSPECIFIED = 0;
+  USER_ON_TEAM_ORDER_FIELD_ADD = 1;
+}
+
+message  UserOnTeamSort {
+  UserOnTeamOrderField order_field = 1;
+	cresplanex.nova.v1.SortOrder order = 2;
+}
+
+message GetUsersOnTeamRequest {
+  string team_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  UserOnTeamSort sort = 3;
+  bool with_count = 4;
+}
+
+message GetUsersOnTeamResponse {
+  repeated UserOnTeam users = 1;
+  cresplanex.nova.v1.Count count = 2;
+}
+
 message TeamUserRequestType {
-  string user_id = 2;
+  string user_id = 1;
 }
 
 message CreateTeamRequest {

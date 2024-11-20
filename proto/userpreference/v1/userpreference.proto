@@ -11,6 +11,7 @@ service UserPreferenceService {
   rpc FindUserPreferenceByUserId(FindUserPreferenceByUserIdRequest) returns (FindUserPreferenceByUserIdResponse);
   rpc GetUserPreferences(GetUserPreferencesRequest) returns (GetUserPreferencesResponse);
   rpc GetPluralUserPreferences(GetPluralUserPreferencesRequest) returns (GetPluralUserPreferencesResponse);
+  rpc GetPluralUserPreferencesByUserId(GetPluralUserPreferencesByUserIdRequest) returns (GetPluralUserPreferencesByUserIdResponse);
   rpc UpdateUserPreference(UpdateUserPreferenceRequest) returns (UpdateUserPreferenceResponse);
 }
 
@@ -33,11 +34,10 @@ message FindUserPreferenceByUserIdResponse {
 enum UserPreferenceOrderField {
   USER_PREFERENCE_ORDER_FIELD_UNSPECIFIED = 0;
   USER_PREFERENCE_ORDER_FIELD_CREATE = 1;
-  USER_PREFERENCE_ORDER_FIELD_NAME = 2;
 }
 
 message  UserPreferenceSort {
-  UserPreferenceOrderField field = 1;
+  UserPreferenceOrderField order_field = 1;
 	cresplanex.nova.v1.SortOrder order = 2;
 }
 
@@ -64,6 +64,15 @@ message GetPluralUserPreferencesRequest {
 }
 
 message GetPluralUserPreferencesResponse {
+  repeated UserPreference user_preferences = 1;
+}
+
+message GetPluralUserPreferencesByUserIdRequest {
+  repeated string user_ids = 1;
+  UserPreferenceSort sort = 2;
+}
+
+message GetPluralUserPreferencesByUserIdResponse {
   repeated UserPreference user_preferences = 1;
 }
 

@@ -27,7 +27,7 @@ enum FileObjectOrderField {
 }
 
 message FileObjectSort {
-  FileObjectOrderField field = 1;
+  FileObjectOrderField order_field = 1;
 	cresplanex.nova.v1.SortOrder order = 2;
 }
 
