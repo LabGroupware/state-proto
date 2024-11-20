@@ -15,7 +15,8 @@ service UserProfileService {
 }
 
 message FindUserProfileRequest {
-  string user_profile_id = 1; // ユーザープロフィールID
+  string operator_id = 1;
+  string user_profile_id = 2; // ユーザープロフィールID
 }
 
 message FindUserProfileResponse {
@@ -23,7 +24,8 @@ message FindUserProfileResponse {
 }
 
 message FindUserProfileByUserIdRequest {
-  string user_id = 1; // ユーザーID
+  string operator_id = 1;
+  string user_id = 2; // ユーザーID
 }
 
 message FindUserProfileByUserIdResponse {
@@ -31,7 +33,8 @@ message FindUserProfileByUserIdResponse {
 }
 
 message FindUserProfileByEmailRequest {
-  string email = 1; // メールアドレス
+  string operator_id = 1;
+  string email = 2; // メールアドレス
 }
 
 message FindUserProfileByEmailResponse {
@@ -50,9 +53,10 @@ message  UserProfileSort {
 }
 
 message GetUserProfilesRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  UserProfileSort sort = 2;
-  bool with_count = 3;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  UserProfileSort sort = 3;
+  bool with_count = 4;
 }
 
 message GetUserProfilesResponse {
@@ -61,8 +65,9 @@ message GetUserProfilesResponse {
 }
 
 message GetPluralUserProfilesRequest {
-  repeated string user_profile_ids = 1;
-  UserProfileSort sort = 2;
+  string operator_id = 1;
+  repeated string user_profile_ids = 2;
+  UserProfileSort sort = 3;
 }
 
 message GetPluralUserProfilesResponse {
@@ -70,8 +75,9 @@ message GetPluralUserProfilesResponse {
 }
 
 message GetPluralUserProfilesByUserIdRequest {
-  repeated string user_ids = 1;
-  UserProfileSort sort = 2;
+  string operator_id = 1;
+  repeated string user_ids = 2;
+  UserProfileSort sort = 3;
 }
 
 message GetPluralUserProfilesByUserIdResponse {

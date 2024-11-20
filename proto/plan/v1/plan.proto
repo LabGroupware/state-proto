@@ -19,7 +19,8 @@ service PlanService {
 }
 
 message FindTaskRequest {
-  string task_id = 1;
+  string operator_id = 1;
+  string task_id = 2;
 }
 
 message FindTaskResponse {
@@ -27,7 +28,8 @@ message FindTaskResponse {
 }
 
 message FindTaskWithAttachmentsRequest {
-  string task_id = 1;
+  string operator_id = 1;
+  string task_id = 2;
 }
 
 message FindTaskWithAttachmentsResponse {
@@ -83,15 +85,16 @@ message TaskFilterFileObject {
 }
 
 message GetTasksRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  TaskSort sort = 2;
-  bool with_count = 3;
-  TaskFilterTeam filter_team = 4;
-  TaskFilterStatus filter_status = 5;
-  TaskFilterChargeUser filter_charge_user = 6;
-  TaskFilterStartDatetime filter_start_datetime = 7;
-  TaskFilterDueDatetime filter_due_datetime = 8;
-  TaskFilterFileObject filter_file_object = 9;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  TaskSort sort = 3;
+  bool with_count = 4;
+  TaskFilterTeam filter_team = 5;
+  TaskFilterStatus filter_status = 6;
+  TaskFilterChargeUser filter_charge_user = 7;
+  TaskFilterStartDatetime filter_start_datetime = 8;
+  TaskFilterDueDatetime filter_due_datetime = 9;
+  TaskFilterFileObject filter_file_object = 10;
 }
 
 message GetTasksResponse {
@@ -100,8 +103,9 @@ message GetTasksResponse {
 }
 
 message GetPluralTasksRequest {
-  repeated string task_ids = 1;
-  TaskSort sort = 2;
+  string operator_id = 1;
+  repeated string task_ids = 2;
+  TaskSort sort = 3;
 }
 
 message GetPluralTasksResponse {
@@ -123,15 +127,16 @@ message TaskWithAttachmentsSort {
 
 
 message GetTasksWithAttachmentsRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  TaskWithAttachmentsSort sort = 2;
-  bool with_count = 3;
-  TaskFilterTeam filter_team = 4;
-  TaskFilterStatus filter_status = 5;
-  TaskFilterChargeUser filter_charge_user = 6;
-  TaskFilterStartDatetime filter_start_datetime = 7;
-  TaskFilterDueDatetime filter_due_datetime = 8;
-  TaskFilterFileObject filter_file_object = 9;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  TaskWithAttachmentsSort sort = 3;
+  bool with_count = 4;
+  TaskFilterTeam filter_team = 5;
+  TaskFilterStatus filter_status = 6;
+  TaskFilterChargeUser filter_charge_user = 7;
+  TaskFilterStartDatetime filter_start_datetime = 8;
+  TaskFilterDueDatetime filter_due_datetime = 9;
+  TaskFilterFileObject filter_file_object = 10;
 }
 
 message GetTasksWithAttachmentsResponse {
@@ -140,8 +145,9 @@ message GetTasksWithAttachmentsResponse {
 }
 
 message GetPluralTasksWithAttachmentsRequest {
-  repeated string task_ids = 1;
-  TaskSort sort = 2;
+  string operator_id = 1;
+  repeated string task_ids = 2;
+  TaskSort sort = 3;
 }
 
 message GetPluralTasksWithAttachmentsResponse {
@@ -159,10 +165,11 @@ message  FileObjectOnTaskSort {
 }
 
 message GetFileObjectsOnTaskRequest {
-  string task_id = 1;
-  cresplanex.nova.v1.Pagination pagination = 2;
-  FileObjectOnTaskSort sort = 3;
-  bool with_count = 4;
+  string operator_id = 1;
+  string task_id = 2;
+  cresplanex.nova.v1.Pagination pagination = 3;
+  FileObjectOnTaskSort sort = 4;
+  bool with_count = 5;
 }
 
 message GetFileObjectsOnTaskResponse {
@@ -185,10 +192,11 @@ message TaskOnFileObjectSort {
 }
 
 message GetTasksOnFileObjectRequest {
-  string file_object_id = 1;
-  cresplanex.nova.v1.Pagination pagination = 2;
-  TaskOnFileObjectSort sort = 3;
-  bool with_count = 4;
+  string operator_id = 1;
+  string file_object_id = 2;
+  cresplanex.nova.v1.Pagination pagination = 3;
+  TaskOnFileObjectSort sort = 4;
+  bool with_count = 5;
 }
 
 message GetTasksOnFileObjectResponse {

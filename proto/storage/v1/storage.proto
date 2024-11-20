@@ -13,7 +13,8 @@ service StorageService {
 }
 
 message FindFileObjectRequest {
-  string file_object_id = 1;
+  string operator_id = 1;
+  string file_object_id = 2;
 }
 
 message FindFileObjectResponse {
@@ -37,10 +38,11 @@ message FileObjectFilterBucket {
 }
 
 message GetFileObjectsRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  FileObjectSort sort = 2;
-  bool with_count = 3;
-  FileObjectFilterBucket filter_bucket = 4;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  FileObjectSort sort = 3;
+  bool with_count = 4;
+  FileObjectFilterBucket filter_bucket = 5;
 }
 
 message GetFileObjectsResponse {
@@ -49,8 +51,9 @@ message GetFileObjectsResponse {
 }
 
 message GetPluralFileObjectsRequest {
-  repeated string file_object_ids = 1;
-  FileObjectSort sort = 2;
+  string operator_id = 1;
+  repeated string file_object_ids = 2;
+  FileObjectSort sort = 3;
 }
 
 message GetPluralFileObjectsResponse {

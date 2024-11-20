@@ -16,7 +16,8 @@ service UserPreferenceService {
 }
 
 message FindUserPreferenceRequest {
-  string user_preference_id = 1;
+  string operator_id = 1;
+  string user_preference_id = 2;
 }
 
 message FindUserPreferenceResponse {
@@ -24,7 +25,8 @@ message FindUserPreferenceResponse {
 }
 
 message FindUserPreferenceByUserIdRequest {
-  string user_id = 1;
+  string operator_id = 1;
+  string user_id = 2;
 }
 
 message FindUserPreferenceByUserIdResponse {
@@ -47,10 +49,11 @@ message UserPreferenceFilterLanguage {
 }
 
 message GetUserPreferencesRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  UserPreferenceSort sort = 2;
-  bool with_count = 3;
-  UserPreferenceFilterLanguage filter_language = 4;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  UserPreferenceSort sort = 3;
+  bool with_count = 4;
+  UserPreferenceFilterLanguage filter_language = 5;
 }
 
 message GetUserPreferencesResponse {
@@ -59,8 +62,9 @@ message GetUserPreferencesResponse {
 }
 
 message GetPluralUserPreferencesRequest {
-  repeated string user_preference_ids = 1;
-  UserPreferenceSort sort = 2;
+  string operator_id = 1;
+  repeated string user_preference_ids = 2;
+  UserPreferenceSort sort = 3;
 }
 
 message GetPluralUserPreferencesResponse {
@@ -68,8 +72,9 @@ message GetPluralUserPreferencesResponse {
 }
 
 message GetPluralUserPreferencesByUserIdRequest {
-  repeated string user_ids = 1;
-  UserPreferenceSort sort = 2;
+  string operator_id = 1;
+  repeated string user_ids = 2;
+  UserPreferenceSort sort = 3;
 }
 
 message GetPluralUserPreferencesByUserIdResponse {

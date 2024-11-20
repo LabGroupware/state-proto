@@ -20,7 +20,8 @@ service TeamService {
 }
 
 message FindTeamRequest {
-  string team_id = 1;
+  string operator_id = 1;
+  string team_id = 2;
 }
 
 message FindTeamResponse {
@@ -28,7 +29,8 @@ message FindTeamResponse {
 }
 
 message FindTeamWithUsersRequest {
-  string team_id = 1;
+  string operator_id = 1;
+  string team_id = 2;
 }
 
 message FindTeamWithUsersResponse {
@@ -63,12 +65,13 @@ message TeamFilterUser {
 }
 
 message GetTeamsRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  TeamSort sort = 2;
-  bool with_count = 3;
-  TeamFilterIsDefault filter_is_default = 4;
-  TeamFilterOrganization filter_organization = 5;
-  TeamFilterUser filter_user = 6;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  TeamSort sort = 3;
+  bool with_count = 4;
+  TeamFilterIsDefault filter_is_default = 5;
+  TeamFilterOrganization filter_organization = 6;
+  TeamFilterUser filter_user = 7;
 }
 
 message GetTeamsResponse {
@@ -77,8 +80,9 @@ message GetTeamsResponse {
 }
 
 message GetPluralTeamsRequest {
-  repeated string team_ids = 1;
-  TeamSort sort = 2;
+  string operator_id = 1;
+  repeated string team_ids = 2;
+  TeamSort sort = 3;
 }
 
 message GetPluralTeamsResponse {
@@ -97,12 +101,13 @@ message TeamWithUsersSort {
 }
 
 message GetTeamsWithUsersRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  TeamWithUsersSort sort = 2;
-  bool with_count = 3;
-  TeamFilterIsDefault filter_is_default = 4;
-  TeamFilterOrganization filter_organization = 5;
-  TeamFilterUser filter_user = 6;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  TeamWithUsersSort sort = 3;
+  bool with_count = 4;
+  TeamFilterIsDefault filter_is_default = 5;
+  TeamFilterOrganization filter_organization = 6;
+  TeamFilterUser filter_user = 7;
 }
 
 message GetTeamsWithUsersResponse {
@@ -111,8 +116,9 @@ message GetTeamsWithUsersResponse {
 }
 
 message GetPluralTeamsWithUsersRequest {
-  repeated string team_ids = 1;
-  TeamSort sort = 2;
+  string operator_id = 1;
+  repeated string team_ids = 2;
+  TeamSort sort = 3;
 }
 
 message GetPluralTeamsWithUsersResponse {
@@ -130,10 +136,11 @@ message  UserOnTeamSort {
 }
 
 message GetUsersOnTeamRequest {
-  string team_id = 1;
-  cresplanex.nova.v1.Pagination pagination = 2;
-  UserOnTeamSort sort = 3;
-  bool with_count = 4;
+  string operator_id = 1;
+  string team_id = 2;
+  cresplanex.nova.v1.Pagination pagination = 3;
+  UserOnTeamSort sort = 4;
+  bool with_count = 5;
 }
 
 message GetUsersOnTeamResponse {
@@ -154,10 +161,11 @@ message TeamOnUserSort {
 }
 
 message GetTeamsOnUserRequest {
-  string user_id = 1;
-  cresplanex.nova.v1.Pagination pagination = 2;
-  TeamOnUserSort sort = 3;
-  bool with_count = 4;
+  string operator_id = 1;
+  string user_id = 2;
+  cresplanex.nova.v1.Pagination pagination = 3;
+  TeamOnUserSort sort = 4;
+  bool with_count = 5;
 }
 
 message GetTeamsOnUserResponse {

@@ -19,7 +19,8 @@ service OrganizationService {
 }
 
 message FindOrganizationRequest {
-  string organization_id = 1;
+  string operator_id = 1;
+  string organization_id = 2;
 }
 
 message FindOrganizationResponse {
@@ -27,7 +28,8 @@ message FindOrganizationResponse {
 }
 
 message FindOrganizationWithUsersRequest {
-  string organization_id = 1;
+  string operator_id = 1;
+  string organization_id = 2;
 }
 
 message FindOrganizationWithUsersResponse {
@@ -40,7 +42,7 @@ enum OrganizationOrderField {
   ORGANIZATION_ORDER_FIELD_NAME = 2;
 }
 
-message  OrganizationSort {
+message OrganizationSort {
   OrganizationOrderField order_field = 1;
 	cresplanex.nova.v1.SortOrder order = 2;
 }
@@ -62,12 +64,13 @@ message OrganizationFilterUser {
 }
 
 message GetOrganizationsRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  OrganizationSort sort = 2;
-  bool with_count = 3;
-  OrganizationFilterPlan filter_plan = 4;
-  OrganizationFilterOwner filter_owner = 5;
-  OrganizationFilterUser filter_user = 6;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  OrganizationSort sort = 3;
+  bool with_count = 4;
+  OrganizationFilterPlan filter_plan = 5;
+  OrganizationFilterOwner filter_owner = 6;
+  OrganizationFilterUser filter_user = 7;
 }
 
 message GetOrganizationsResponse {
@@ -76,8 +79,9 @@ message GetOrganizationsResponse {
 }
 
 message GetPluralOrganizationsRequest {
-  repeated string organization_ids = 1;
-  OrganizationSort sort = 2;
+  string operator_id = 1;
+  repeated string organization_ids = 2;
+  OrganizationSort sort = 3;
 }
 
 message GetPluralOrganizationsResponse {
@@ -96,12 +100,13 @@ message OrganizationWithUsersSort {
 }
 
 message GetOrganizationsWithUsersRequest {
-  cresplanex.nova.v1.Pagination pagination = 1;
-  OrganizationWithUsersSort sort = 2;
-  bool with_count = 3;
-  OrganizationFilterPlan filter_plan = 4;
-  OrganizationFilterOwner filter_owner = 5;
-  OrganizationFilterUser filter_user = 6;
+  string operator_id = 1;
+  cresplanex.nova.v1.Pagination pagination = 2;
+  OrganizationWithUsersSort sort = 3;
+  bool with_count = 4;
+  OrganizationFilterPlan filter_plan = 5;
+  OrganizationFilterOwner filter_owner = 6;
+  OrganizationFilterUser filter_user = 7;
 }
 
 message GetOrganizationsWithUsersResponse {
@@ -110,8 +115,9 @@ message GetOrganizationsWithUsersResponse {
 }
 
 message GetPluralOrganizationsWithUsersRequest {
-  repeated string organization_ids = 1;
-  OrganizationSort sort = 2;
+  string operator_id = 1;
+  repeated string organization_ids = 2;
+  OrganizationSort sort = 3;
 }
 
 message GetPluralOrganizationsWithUsersResponse {
@@ -129,10 +135,11 @@ message  UserOnOrganizationSort {
 }
 
 message GetUsersOnOrganizationRequest {
-  string organization_id = 1;
-  cresplanex.nova.v1.Pagination pagination = 2;
-  UserOnOrganizationSort sort = 3;
-  bool with_count = 4;
+  string operator_id = 1;
+  string organization_id = 2;
+  cresplanex.nova.v1.Pagination pagination = 3;
+  UserOnOrganizationSort sort = 4;
+  bool with_count = 5;
 }
 
 message GetUsersOnOrganizationResponse {
@@ -153,10 +160,11 @@ message OrganizationOnUserSort {
 }
 
 message GetOrganizationsOnUserRequest {
-  string user_id = 1;
-  cresplanex.nova.v1.Pagination pagination = 2;
-  OrganizationOnUserSort sort = 3;
-  bool with_count = 4;
+  string operator_id = 1;
+  string user_id = 2;
+  cresplanex.nova.v1.Pagination pagination = 3;
+  OrganizationOnUserSort sort = 4;
+  bool with_count = 5;
 }
 
 message GetOrganizationsOnUserResponse {
