@@ -118,7 +118,7 @@ message GetTeamsWithUsersResponse {
 message GetPluralTeamsWithUsersRequest {
   string operator_id = 1;
   repeated string team_ids = 2;
-  TeamSort sort = 3;
+  TeamWithUsersSort sort = 3;
 }
 
 message GetPluralTeamsWithUsersResponse {

@@ -147,7 +147,7 @@ message GetTasksWithAttachmentsResponse {
 message GetPluralTasksWithAttachmentsRequest {
   string operator_id = 1;
   repeated string task_ids = 2;
-  TaskSort sort = 3;
+  TaskWithAttachmentsSort sort = 3;
 }
 
 message GetPluralTasksWithAttachmentsResponse {

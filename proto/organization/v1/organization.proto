@@ -117,7 +117,7 @@ message GetOrganizationsWithUsersResponse {
 message GetPluralOrganizationsWithUsersRequest {
   string operator_id = 1;
   repeated string organization_ids = 2;
-  OrganizationSort sort = 3;
+  OrganizationWithUsersSort sort = 3;
 }
 
 message GetPluralOrganizationsWithUsersResponse {
