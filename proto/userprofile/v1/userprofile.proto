@@ -12,6 +12,7 @@ service UserProfileService {
   rpc GetUserProfiles(GetUserProfilesRequest) returns (GetUserProfilesResponse);
   rpc GetPluralUserProfiles(GetPluralUserProfilesRequest) returns (GetPluralUserProfilesResponse);
   rpc GetPluralUserProfilesByUserId(GetPluralUserProfilesByUserIdRequest) returns (GetPluralUserProfilesByUserIdResponse);
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
 }
 
 message FindUserProfileRequest {
@@ -82,4 +83,14 @@ message GetPluralUserProfilesByUserIdRequest {
 
 message GetPluralUserProfilesByUserIdResponse {
   repeated UserProfile user_profiles = 1;
+}
+
+message CreateUserRequest {
+  string user_id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message CreateUserResponse {
+  string job_id = 1;
 }
